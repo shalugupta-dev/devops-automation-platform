@@ -1,0 +1,23 @@
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: devops-platform
+
+    ports:
+      - "5000:5000"
+
+    environment:
+      SECRET_KEY: "local-development-only"
+      DATABASE_URL: "sqlite:////data/devops_platform.db"
+
+    volumes:
+      - devops_data:/data
+
+    restart: unless-stopped
+
+volumes:
+  devops_data:
